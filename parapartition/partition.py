@@ -1,5 +1,5 @@
 import logging
-from typing import Generator, Tuple
+from typing import Generator, Tuple, Union
 
 from lxml import etree, html
 
@@ -62,7 +62,9 @@ def _split_plain_text(file_path: str) -> Generator[Tuple[str, int, str], None, N
             yield (file_path, i, line.rstrip("\n"))
 
 
-def _determine_text_beginnig(xml_tree: etree._ElementTree) -> etree._Element:
+def _determine_text_beginnig(
+    xml_tree: etree._ElementTree,
+) -> Union[etree._Element, etree._ElementTree]:
     tei_header = xml_tree.find(".//{*}teiHeader")
     if tei_header is None:
         text_root = xml_tree

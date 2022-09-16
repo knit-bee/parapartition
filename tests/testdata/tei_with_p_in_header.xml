@@ -1,0 +1,46 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Arch Linux – Wikipedia</title>
+      </titleStmt>
+      <publicationStmt>
+        <p>some text that should be ignored</p>
+      </publicationStmt>
+      <notesStmt>
+        <note type="fingerprint">RjwO+UXJJhkyZIYN7Hrys8dGbew=</note>
+      </notesStmt>
+      <sourceDesc>
+        <bibl>Arch Linux – Wikipedia. Wikimedia Foundation, Inc., 2004-04-11</bibl>
+        <bibl type="sigle">Wikimedia Foundation, Inc., 2004-04-11</bibl>
+        <biblFull>
+          <titleStmt>
+            <title type="main">Arch Linux – Wikipedia</title>
+          </titleStmt>
+          <publicationStmt>
+            <publisher>Wikimedia Foundation, Inc. (wikipedia.org)</publisher>
+            <ptr type="URL" target="https://de.wikipedia.org/wiki/Arch_Linux"/>
+            <date>2004-04-11</date>
+          </publicationStmt>
+        </biblFull>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <appInfo>
+        <application version="1.3.0" ident="Trafilatura">
+          <label>Trafilatura</label>
+          <ptr target="https://github.com/adbar/trafilatura"/>
+        </application>
+      </appInfo>
+    </encodingDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="entry">
+        <fw rend="h1" type="header">Arch Linux</fw>
+        <p>Arch Linux [ɑːrtʃ ˈlinʊks] ist eine AMD64-optimierte Linux-Distribution mit Rolling Releases,</p>
+      <p/>
+      </div>
+    </body>
+  </text>
+</TEI>

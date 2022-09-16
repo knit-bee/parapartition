@@ -1,8 +1,9 @@
 import logging
 from typing import Generator, Tuple
 
-import magic
 from lxml import etree, html
+
+from parapartition.file_type import detect_format
 
 logger = logging.getLogger(__name__)
 
@@ -15,27 +16,13 @@ def split_into_paragraphs(
         return
     if format == "plain":
         yield from _split_plain_text(file_path)
-    elif format == "tei":
+    elif format in {"tei", "xml"}:
         yield from _split_tei(file_path)
     elif format == "html":
         yield from _split_html(file_path)
     else:
         logger.warning("No valid format, skipping %s " % file_path)
         return
-
-
-# raw text
-# xml /tei : list, table, paragraph , head to paragraph
-
-
-def detect_format(file_path):
-    format = magic.from_file(file_path, mime=True).split("/")
-    if format[0] != "text":
-        logger.warning(
-            "Skipping file %s, it is not a plain text file or empty." % file_path
-        )
-        return None
-    return format[1]
 
 
 def _split_html(file_path: str) -> Generator[Tuple[str, int, str], None, None]:

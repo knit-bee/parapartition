@@ -4,35 +4,12 @@ import unittest
 
 from lxml import etree
 
-from parapartition.partition import detect_format, split_into_paragraphs
+from parapartition.partition import split_into_paragraphs
 
 
 class ParapartitionTester(unittest.TestCase):
     def setUp(self):
         self.testdata = os.path.join("tests", "testdata")
-
-    def test_detect_format_on_xml_file(self):
-        for file in self.files("xml"):
-            result = detect_format(file)
-            with self.subTest(file):
-                self.assertEqual(result, "html")
-
-    def test_detect_format_on_raw_text_file(self):
-        for file in self.files("raw"):
-            result = detect_format(file)
-            with self.subTest(file):
-                self.assertEqual(result, "plain")
-
-    def test_detect_format_on_html_file(self):
-        for file in self.files("html"):
-            result = detect_format(file)
-            with self.subTest():
-                self.assertEqual(result, "html")
-
-    def test_detect_format_for_empty_file(self):
-        file = os.path.join(self.testdata, "empty.txt")
-        result = detect_format(file)
-        self.assertIsNone(result)
 
     def test_split_raw_text_file_all_lines_returned_individually(self):
         file = os.path.join(self.testdata, "raw", "raw.txt")
@@ -41,7 +18,7 @@ class ParapartitionTester(unittest.TestCase):
 
     def test_paragraph_content_returned(self):
         file = os.path.join(self.testdata, "raw", "raw.txt")
-        result = [paragraph[2] for paragraph in split_into_paragraphs(file)]
+        result = [paragraph[2] for paragraph in split_into_paragraphs(file, "plain")]
         with open(file, encoding="utf-8") as ptr:
             expected = [line.rstrip("\n") for line in ptr]
         self.assertEqual(result, expected)
@@ -125,13 +102,41 @@ class ParapartitionTester(unittest.TestCase):
         pass
 
     def test_split_tei_header_ignored(self):
+        file = os.path.join(self.testdata, "tei_with_p_in_header.xml")
+        result = [para[2] for para in split_into_paragraphs(file, "tei")]
+        expected = [
+            "Arch Linux",
+            "Arch Linux [ɑːrtʃ ˈlinʊks] ist eine AMD64-optimierte Linux-Distribution mit Rolling Releases,",
+        ]
+        self.assertEqual(result, expected)
+
+    def test_split_format_detected_on_xml(self):
+        file = os.path.join(self.testdata, "xml", "xml1.xml")
+        result = [para[0] for para in split_into_paragraphs(file)]
+        result = re.sub(r"\s", "", result)
+        doc = etree.parse(file)
+        expected = re.sub(r"\s", "", "".join(doc.getroot().itertext()))
+        self.assertEqual(result, expected)
+
+    def test_split_file_format_detected_on_tei(self):
+        file = os.path.join(self.testdata, "tei_with_empty_p.xml")
+        result = [para[0] for para in split_into_paragraphs(file)]
+        expected = [
+            "Arch Linux",
+            "Arch Linux [ɑːrtʃ ˈlinʊks] ist eine AMD64-optimierte Linux-Distribution mit Rolling Releases,",
+            "more text",
+        ]
+        self.assertEqual(result, expected)
+
+    def test_split_file_format_detected_on_html(self):
         pass
 
-    def test_split_tei_sources_lines_numbered_correctly(self):
-        pass
-
-    def test_split_tei_text_content_returned(self):
-        pass
+    def test_split_file_format_detected_on_plain_text(self):
+        file = os.path.join(self.testdata, "raw", "raw.txt")
+        result = [paragraph[2] for paragraph in split_into_paragraphs(file)]
+        with open(file, encoding="utf-8") as ptr:
+            expected = [line.rstrip("\n") for line in ptr]
+        self.assertEqual(result, expected)
 
     def test_split_empty_file_into_paragraphs(self):
         file = os.path.join(self.testdata, "empty.txt")
@@ -142,6 +147,19 @@ class ParapartitionTester(unittest.TestCase):
         file = "some_file"
         result = list(split_into_paragraphs(file, "some_format"))
         self.assertEqual(result, [])
+
+    def test_empty_paragraph_skipped_in_xml(self):
+        file = os.path.join(self.testdata, "tei_with_empty_p.xml")
+        result = [paragraph[2] for paragraph in split_into_paragraphs(file, "tei")]
+        self.assertEqual(len(result), 3)
+
+    def test_empty_paragraph_skipped_in_html(self):
+        pass
+
+    def test_empty_lines_skipped_in_plain_text(self):
+        file = os.path.join(self.testdata, "plain_with_empty_lines.txt")
+        result = [para[2] for para in split_into_paragraphs(file, "plain")]
+        self.assertEqual(len(result), 4)
 
     def files(self, format):
         testfiles = {

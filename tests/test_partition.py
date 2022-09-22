@@ -96,10 +96,91 @@ class ParapartitionTester(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_split_html_source_line_numbers_returned_correctly(self):
-        pass
+        file = os.path.join(self.testdata, "html", "html1.html")
+        result = [para[1] for para in split_into_paragraphs(file, "html")]
+        expected = [
+            48,
+            51,
+            53,
+            56,
+            59,
+            102,
+            103,
+            105,
+            106,
+            126,
+            127,
+            128,
+            129,
+            131,
+            132,
+            134,
+            136,
+            137,
+            139,
+            140,
+            141,
+            142,
+            144,
+            145,
+            147,
+            151,
+            153,
+            154,
+            155,
+            157,
+            159,
+            161,
+            162,
+            163,
+            165,
+            166,
+            167,
+            169,
+            170,
+            171,
+            173,
+            174,
+            175,
+            178,
+            179,
+            180,
+            183,
+            184,
+            230,
+            231,
+            231,
+            235,
+            284,
+        ]
+        self.assertEqual(result, expected)
 
     def test_split_html_text_content_returned_correctly(self):
-        pass
+        file = os.path.join(self.testdata, "html_with_empty_p.html")
+        result = [para[2] for para in split_into_paragraphs(file, "html")]
+        expected = [
+            "text in first cell text in second cell",
+            "text in paragraph",
+            # third item
+            "Es gibt mehrere Distributionen, die entweder von Arch Linux abstammen"
+            " oder dessen Paketquellen nutzen. Dazu zählen Antergos mit einem Live-System,"
+            " das auf Benutzerfreundlichkeit ausgerichtete Manjaro, Apricity OS für "
+            "mobile Cloud-Anwender, das mit einem Tiling Fenstermanager ausgestattete"
+            " ArchBang oder Chakra mit Fokus auf KDE[15] aber auch BlackArch[16] "
+            "für Penetrationstester, EndeavourOS[17] mit grafischem Installer, "
+            "Parabola GNU/Linux-libre[18] ohne unfreie Bestandteile, SystemRescueCd[19]"
+            " zur Datenrettung und Artix Linux welches auf systemd verzichtet.[20] "
+            "Das italienische Condres OS setzt den Fokus auf Benutzerfreundlichkeit"
+            " und bietet offizielle Paketquellen für 32-Bit Architekturen an. ArcoLinux"
+            " hingegen versteht sich als Lernsystem, das in den Umgang mit Arch Linux "
+            "einführt.[21] SteamOS ab Version 3, welches auf dem Steam Deck eingesetzt "
+            "wird, basiert auf Arch Linux.[22] Weblinks",
+            # fourth item
+            "Arch Linux Website (offiziell, englisch) Arch Linux Wiki (offiziell,"
+            " englisch) Arch Linux Website (inoffiziell, deutsch, privat betrieben)",
+        ]
+
+        self.assertEqual(expected, result)
 
     def test_split_tei_header_ignored(self):
         file = os.path.join(self.testdata, "tei_with_p_in_header.xml")
@@ -112,15 +193,15 @@ class ParapartitionTester(unittest.TestCase):
 
     def test_split_format_detected_on_xml(self):
         file = os.path.join(self.testdata, "xml", "xml1.xml")
-        result = [para[0] for para in split_into_paragraphs(file)]
-        result = re.sub(r"\s", "", result)
+        result = [para[2] for para in split_into_paragraphs(file)]
+        result = re.sub(r"\s", "", "".join(result))
         doc = etree.parse(file)
         expected = re.sub(r"\s", "", "".join(doc.getroot().itertext()))
         self.assertEqual(result, expected)
 
     def test_split_file_format_detected_on_tei(self):
         file = os.path.join(self.testdata, "tei_with_empty_p.xml")
-        result = [para[0] for para in split_into_paragraphs(file)]
+        result = [para[2] for para in split_into_paragraphs(file)]
         expected = [
             "Arch Linux",
             "Arch Linux [ɑːrtʃ ˈlinʊks] ist eine AMD64-optimierte Linux-Distribution mit Rolling Releases,",
@@ -129,7 +210,14 @@ class ParapartitionTester(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_split_file_format_detected_on_html(self):
-        pass
+        file = os.path.join(self.testdata, "html", "html2")
+        result = [para[2].strip() for para in split_into_paragraphs(file)]
+        expected = [
+            "CentralNotice",
+            "Arch Linux",
+            "aus Wikipedia, der freien Enzyklopädie",
+        ]
+        self.assertEqual(result[:3], expected)
 
     def test_split_file_format_detected_on_plain_text(self):
         file = os.path.join(self.testdata, "raw", "raw.txt")
@@ -154,7 +242,9 @@ class ParapartitionTester(unittest.TestCase):
         self.assertEqual(len(result), 3)
 
     def test_empty_paragraph_skipped_in_html(self):
-        pass
+        file = os.path.join(self.testdata, "html_with_empty_p.html")
+        result = [para[2] for para in split_into_paragraphs(file, "html")]
+        self.assertEqual(len(result), 4)
 
     def test_empty_lines_skipped_in_plain_text(self):
         file = os.path.join(self.testdata, "plain_with_empty_lines.txt")

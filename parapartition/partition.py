@@ -26,7 +26,30 @@ def split_into_paragraphs(
 
 
 def _split_html(file_path: str) -> Generator[Tuple[str, int, str], None, None]:
-    pass
+    complex_tags = {"table", "ul", "dl", "ol"}
+    ignore_tags = {"meta", "script", "nav", "link", "label", "form", "title"}
+    document = html.parse(file_path)
+    text_root = _determine_text_beginnig_html(document)
+    _strip_formatting_tags(text_root)
+    for element in text_root.iter():
+        if element.tag in ignore_tags:
+            continue
+        ancestors = {
+            parent.tag
+            for parent in element.iterancestors(complex_tags.union({"footer", "nav"}))
+        }
+        if ancestors:
+            continue
+        if element.tag in complex_tags:
+            text = _gather_complex_element_text(element)
+            if text.strip():
+                yield (file_path, element.sourceline, text)
+        else:
+            text = element.text if element.text else ""
+            if element.tail is not None and element.tail.strip():
+                text += f" {element.tail.strip()}"
+            if text.strip():
+                yield (file_path, element.sourceline, text)
 
 
 def _split_tei(file_path: str) -> Generator[Tuple[str, int, str], None, None]:
@@ -71,6 +94,43 @@ def _determine_text_beginnig(
     else:
         text_root = tei_header.getnext()
     return text_root
+
+
+def _determine_text_beginnig_html(
+    html_tree: etree._Element,
+) -> Union[etree._Element, etree._ElementTree]:
+    head = html_tree.find(".//head")
+    if head is not None:
+        return head.getnext()
+    return html_tree
+
+
+def _strip_formatting_tags(html_tree: etree._Element) -> None:
+    formatting_tags = {
+        "b",
+        "a",
+        "em",
+        "strong",
+        "mark",
+        "span",
+        "br",
+        "cite",
+        "code",
+        "i",
+        "dfn",
+        "q",
+        "big",
+        "small",
+        "time",
+        "u",
+        "var",
+        "style",
+        "sub",
+        "sup",
+        "label",
+        "input",
+    }
+    etree.strip_tags(html_tree, formatting_tags)
 
 
 def _gather_complex_element_text(element: etree._Element) -> str:

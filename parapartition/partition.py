@@ -82,7 +82,9 @@ def _split_tei(file_path: str) -> Generator[Tuple[str, int, str], None, None]:
 def _split_plain_text(file_path: str) -> Generator[Tuple[str, int, str], None, None]:
     with open(file_path, "r", encoding="utf-8") as ptr:
         for i, line in enumerate(ptr, 1):
-            yield (file_path, i, line.rstrip("\n"))
+            text = line.rstrip("\n")
+            if text:
+                yield (file_path, i, text)
 
 
 def _determine_text_beginnig(

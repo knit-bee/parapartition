@@ -3,7 +3,7 @@ from typing import Generator, Tuple, Union
 
 from lxml import etree, html
 
-from parapartition.file_type import detect_format
+from parapartition.file_format import detect_format
 
 logger = logging.getLogger(__name__)
 

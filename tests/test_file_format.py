@@ -1,10 +1,10 @@
 import os
 import unittest
 
-from parapartition.file_type import detect_format
+from parapartition.file_format import detect_format
 
 
-class FileTypeDetectionTester(unittest.TestCase):
+class FileFormatDetectionTester(unittest.TestCase):
     def setUp(self):
         self.testdata = os.path.join("tests", "testdata")
 

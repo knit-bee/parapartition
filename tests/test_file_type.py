@@ -1,5 +1,6 @@
-import unittest
 import os
+import unittest
+
 from parapartition.file_type import detect_format
 
 
@@ -11,7 +12,13 @@ class FileTypeDetectionTester(unittest.TestCase):
         for file in self.files("xml"):
             result = detect_format(file)
             with self.subTest(file):
-                self.assertEqual(result, "html")
+                self.assertEqual(result, "xml")
+
+    def test_detect_format_on_tei_file(self):
+        for file in self.files("tei"):
+            result = detect_format(file)
+            with self.subTest(file):
+                self.assertEqual(result, "tei")
 
     def test_detect_format_on_raw_text_file(self):
         for file in self.files("raw"):
@@ -25,24 +32,16 @@ class FileTypeDetectionTester(unittest.TestCase):
             with self.subTest():
                 self.assertEqual(result, "html")
 
-    def test_detect_format_for_empty_file(self):
-        file = os.path.join(self.testdata, "empty.txt")
-        result = detect_format(file)
-        self.assertIsNone(result)
-
     def files(self, format):
         testfiles = {
-            "xml": [
-                "tei2.xml",
-                "tei4",
-                "tei5.txt",
-                "tei6.html",
-                "xml1.xml",
-                "xml3",
-                "xml7.txt",
-                "xml8.html",
-            ],
+            "xml": ["xml1.xml", "xml3", "xml7.txt", "xml8.html"],
             "html": ["html1.html", "html2", "html3.txt", "html4.xml"],
             "raw": ["raw.txt", "raw2", "raw3.xml", "raw4.html"],
+            "tei": ["tei2.xml", "tei4", "tei5.txt", "tei6.html"],
         }
-        return [os.path.join(self.testdata, format, file) for file in testfiles[format]]
+        return [
+            os.path.join(self.testdata, format, file)
+            if format != "tei"
+            else os.path.join(self.testdata, "xml", file)
+            for file in testfiles[format]
+        ]

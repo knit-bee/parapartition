@@ -1,15 +1,15 @@
-import logging
-
-import magic
-
-logger = logging.getLogger(__name__)
+from lxml import etree
 
 
-def detect_format(file_path):
-    format = magic.from_file(file_path, mime=True).split("/")
-    if format[0] != "text":
-        logger.warning(
-            "Skipping file %s, it is not a plain text file or empty." % file_path
-        )
-        return None
-    return format[1]
+def detect_format(file_path: str) -> str:
+    try:
+        doc = etree.parse(file_path)
+    except etree.XMLSyntaxError:
+        return "plain"
+    else:
+        root = doc.getroot()
+        if root.tag == "html":
+            return "html"
+        if etree.QName(root.tag).localname == "TEI":
+            return "tei"
+        return "xml"

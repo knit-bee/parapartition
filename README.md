@@ -18,7 +18,7 @@ lxml >= 4.0
 ```
 
 Raw txt files will be splitted on newline characters. For xml and TEI-files, text that is contained in &lt;p/&gt;, &lt;fw/&gt;, &lt;ab/&gt; or &lt;head/&gt; elements as well as in tables and lists is treated as a paragraph unit. For TEI-files, the header is ignored and the splitting will start at the beginng of the text content. Xml-files are assumed to contain the afore mentioned TEI-like tags.
-For html files, the header (an element tagged &lt;head/&gt;) is also ignored if present, and formatting_tags are stripped from the tree and some tags (e.g. &lt;meta/&gt;) are ignored. Text in tables and lists is also treated as a unit, otherwise the text from each tag is returned as a paragraph.
+For html files, the header (an element tagged &lt;head/&gt;) is also ignored if present, and formatting tags are stripped from the tree and some tags (e.g. &lt;meta/&gt;) are ignored. Text in tables and lists is also treated as a unit, otherwise the text from each tag is returned as a paragraph.
 If no format parameter is passed to the *split_into_paragraphs* function, it is tried to detect the format. Possible formats are *plain*, *html*, *xml*, and *tei*.
 
 

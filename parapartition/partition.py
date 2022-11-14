@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 
 def split_into_paragraphs(
-    file_path: str, format: str = None
+    file_path: str, format: Optional[str] = None
 ) -> Generator[Tuple[str, int, str], None, None]:
     format = format if format is not None else detect_format(file_path)
     if format is None:

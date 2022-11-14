@@ -1,0 +1,81 @@
+Arch Linux
+|Arch Linux|
+Arch Linux mit der Desktopumgebung KDE Plasma 5
+|Entwickler||2002–2007: Judd Vinet;|
+2007–2020: Aaron Griffin;
+seit 2020: Levente Polyak[1]
+|Lizenz(en)||GPL und andere Lizenzen|
+|Erstveröff.||12. März 2002|
+|Akt. Version||Rolling Release (monatlicher Schnappschuss zur Installation[2])|
+|Abstammung||GNU/Linux |
+↳ Arch
+|Architektur(en)||AMD64, Arm (inoffiziell), 32-Bit-x86 (i486, pentium4 und i686, inoffiziell)|
+|www.archlinux.org|
+Arch Linux [ɑːrtʃ ˈlinʊks] ist eine AMD64-optimierte Linux-Distribution mit Rolling Releases, deren Entwicklerteam dem KISS-Prinzip („keep it simple, stupid“) folgt. Zugunsten der Einfachheit wird auf grafische Installations- und Konfigurationshilfen verzichtet. Aufgrund dieses Ansatzes ist Arch Linux als Distribution für fortgeschrittene Benutzer zu sehen. Inspiriert wurden die Ersteller von Crux und BSD.[3]
+Arch Linux wurde Anfang 2001 von Judd Vinet eingeführt. Am 1. Oktober 2007 gab Vinet seinen Rücktritt als Projektleiter bekannt, sein Nachfolger wurde Aaron Griffin.[1] Arch Linux wird von einem ungefähr 25-köpfigen Kernteam und Helfern aus der wachsenden Community, sogenannten „Trusted Users“, weiterentwickelt. Sämtliche distributionsspezifische Entwicklungen werden unter der GPL veröffentlicht.[2]
+Besonderheiten der Distribution[Bearbeiten | Quelltext bearbeiten]
+Arch Linux wurde mit Linux From Scratch komplett neu entwickelt, orientiert sich aber an Crux und anderen Distributionen. Für Arch wurde der Aufbau eines Slackware-Linux respektive eines BSD-Systems mit einer Debian-ähnlichen Paketverwaltung und dem Build-System von Gentoo kombiniert. Ähnlich wie in Gentoo sind die Releases lediglich Snapshots vom momentanen Entwicklungsstand (Rolling Release).
+Ein herunterladbares Live-System gibt es nicht, dafür werden jedoch Werkzeuge zur Verfügung gestellt, mit dem sich Nutzer ein individuelles Live-Medium erstellen können.[4]
+Als Init-System wird seit 2016 auch bei einer Neuinstallation systemd verwendet. Konfigurationsprogramme für die Installation und Einrichtung des Grundsystems sowie für Anwendungs- und Serverprogramme gibt es nicht, stattdessen wird auf die Originaldokumentation und -konfiguration verwiesen, so dass allgemeine Howtos und Anleitungen herangezogen werden können.[5]
+Philosophie[Bearbeiten | Quelltext bearbeiten]
+Arch Linux wurde als „Basis-Betriebssystem für fortgeschrittene Anwender“ entwickelt. Die Philosophie von Arch Linux basiert auf den folgenden beiden Punkten:
+- Einfach halten, dem KISS-Prinzip folgen. Einfachheit wird hierbei als
+ohne unnötige Ergänzungen oder Veränderungendefiniert.[6]
+- Keine GUI-Werkzeuge zur Konfiguration benutzen, die die eigentlichen Vorgänge vor dem Benutzer verstecken.
+Paketverwaltung[Bearbeiten | Quelltext bearbeiten]
+Arch Linux ist auf den Einsatz von Binärpaketen ausgelegt. Grundsätzlich werden Pakete mit der eigens entwickelten Paketverwaltung Pacman organisiert. Zusätzlich können mit dem Arch Build System (ABS) neue Pakete für Software erstellt werden.
+Pacman[Bearbeiten | Quelltext bearbeiten]
+Pacman ist ein speziell für Arch Linux entwickelter Paketmanager, der aber auch bei anderen Linux-Distributionen zum Einsatz kommt. Pacman kann Abhängigkeiten auflösen und automatisch alle notwendigen Pakete von den Arch-Repositorien herunterladen, installieren, aktualisieren und auch wieder entfernen, vergleichbar mit Debians APT. Das Besondere an Pacman ist dessen konsequente Anwendung auch bei lokalen Quellen, die meistens als vom Arch Build System (ABS) erstellte Pakete vorliegen.[7] Pacman integriert sich auf Wunsch in PackageKit oder grafische Aufsätze wie Pamac. Ist ein Spiegelserver nicht erreichbar, springt Pacman automatisiert zum nächsten.[8]
+Arch Linux setzt auf GnuPG und konzeptionell auf ein Web-of-Trust. Es existieren neben offiziellen Master Schlüsseln noch die GPG Schlüssel der trusted users, die damit ihre Pakete signieren. Ein unabhängiger Nutzer behält das Widerrufszertifikat. Die öffentlichen Schlüssel sowie die Pakete innerhalb eines Reposities sind in einer Datenbank öffentlich einsehbar. Zur Prüfung der Datenintegrität erhält jedes Paket eine zugehörigen MD5- und SHA-256-Prüfsumme.[9]
+Paketquellen[Bearbeiten | Quelltext bearbeiten]
+Die offiziellen Arch-Linux-Pakete werden in vier Software-Repositorien verwaltet:
+- core enthält Pakete, die für den Betrieb eines Basissystems benötigt werden.
+- extra enthält Pakete, die den Funktionsumfang erweitern, z. B. Desktop-Umgebungen, Datenbanksysteme usw.
+- community enthält Pakete, die von der Community, also den „Trusted Users“, gewartet werden.
+- multilib enthält Pakete, die es auf einem AMD64-System erlauben, native i686-Programme (wie Steam) auszuführen.[10]
+Der Hauptteil der Entwicklung findet in den testing-Repositorien statt, bevor die Pakete in die stabilen Repositorien verschoben werden:
+- testing, community-testing und multilib-testing enthalten Pakete, die fehlerbehaftet sein könnten und noch getestet werden müssen.[7]
+Dabei müssen Transfers von Paketen, die von testing nach core wechseln, vorher von mehreren Entwicklern abgesegnet werden. Für Pakete in den anderen Repositorien sind deren jeweilige Entwickler verantwortlich.
+Außerdem gibt es noch einige Repositorien, die die neusten Versionen der Desktop-Umgebungen enthalten:
+- gnome-unstable enthält die neuesten Pakete der Gnome-Software, ehe diese in extra veröffentlicht werden.
+- kde-unstable enthält die neusten Pakete der KDE-Software, ehe diese in extra veröffentlicht werden.
+Zusätzlich können Repositorien Dritter eingebunden werden, die angepasste oder neuere Versionen der Softwarepakete anbieten.
+Arch Build System (ABS)[Bearbeiten | Quelltext bearbeiten]
+Das Arch Build System ist eine Ports-ähnliche Paketverwaltung. Arch nutzt dabei jeweils eine Textdatei mit dem Namen PKGBUILD, die unter anderem die Anweisungen zum Herunterladen und Konfigurieren der jeweiligen Programme enthält. Der Nutzer kann mit dieser Datei die in der Paketverwaltung von Arch enthaltenen Programme seinen eigenen Bedürfnissen anpassen, indem er beispielsweise einen Patch einfügt. Das Programm makepkg führt diese Anweisungen aus und kompiliert und/oder bereitet die Pakete zur Installation durch pacman vor. Ein Arch-Paket ist im Grunde nicht mehr als ein komprimiertes tar-Archiv, das neben den zu installierenden Dateien noch einige weitere (.PKGINFO, .BUILDINFO und .MTREE) mit allen Metadaten enthält, die Pacman für den Umgang mit Paketen benötigt.[10]
+Zusätzlich lässt sich das komplette System über den Befehl
+makeworld neu bauen.[11]
+Arch User Repository (AUR)[Bearbeiten | Quelltext bearbeiten]
+Neben den offiziellen Paketquellen bieten erfahrene Benutzer im Arch User Repository (AUR) PKGBUILD-Skripte, um Pakete lokal selbst zu bauen und dann mit Pacman oder einem AUR-Hilfsprogramm zu installieren. Die PKGBUILD-Skripte vereinfachen das Erstellen von Paketen aus den Quellen durch explizite Auflistung und Überprüfung von Abhängigkeiten und Konfiguration der Installation entsprechend der Arch-Architektur. Das Arch User Repository bietet der Gemeinde zahlreiche Pakete, die nicht in den offiziellen Paketquellen enthalten sind. Deren Verwendung wird von Arch Linux aber ausdrücklich nicht offiziell unterstützt.[12]
+Aktualisierungsmodell[Bearbeiten | Quelltext bearbeiten]
+Im Gegensatz zu anderen großen Distributionen wie zum Beispiel Ubuntu und Fedora, die in Abständen von mehreren Monaten oder Jahren aktualisierte Installationsmedien veröffentlichen, arbeitet Arch Linux mit einem Rolling-Release-System. Die Paketverwaltung ermöglicht es Benutzern, ihre Systeme kontinuierlich aktuell zu halten, indem aktuelle Softwarepakete meist ohne Veränderungen (keep it simple) zeitnah bereitgestellt werden.[3] Anstatt den Benutzer zwischen diskreten Versionen zu bewegen, sind Arch-Linux-Installationsmedien lediglich Schnappschüsse des aktuellen Satzes von Paketen, manchmal mit überarbeiteter Installations-Software. Sofern Updates installiert wurden, macht es keinen Unterschied, aus welchem einstigem Installationsmedium Arch installiert wurde. In der Tat zeigen einige Mitglieder der Arch-Foren stolz das Alter ihrer Installation.
+Am 22. Juli 2012 wurde angekündigt, dass das Arch Linux Installation Framework (AIF) durch einen Satz einfacher Skripte ersetzt werde, um Verzögerungen im Release-Zyklus zu vermeiden. Es wird nun jeweils zum Monatsanfang ein neues Abbild angeboten, welches das Veröffentlichungsdatum als Version im Dateinamen trägt;[13] beispielsweise 2013.01.04 für das Abbild, das am 4. Januar 2013 erschien. Frühe Installationsabbilder hatten Namen, so erschien Version 0.1 am 11. März 2002 unter dem Namen Homer; es folgten Vega, Firefly, Dragon, Nova (2003), Widget (2004), Wombat (2005), Noodle (2006), Gimmick, Voodoo (als Version 0.8, 2007), Duke (als Version 2007.05), Don’t Panic, Core Dump (2008) und Overlord als letztes Release mit Namen.
+Derivate[Bearbeiten | Quelltext bearbeiten]
+Mit Arch Linux 32 existiert eine vom Mutterprojekt unterstützte Abspaltung für Prozessoren mit 32-Bit-Architektur, nachdem die offizielle Unterstützung eingestellt wurde.[14]
+Es gibt mehrere Distributionen, die entweder von Arch Linux abstammen oder dessen Paketquellen nutzen. Dazu zählen Antergos mit einem Live-System, das auf Benutzerfreundlichkeit ausgerichtete Manjaro, Apricity OS für mobile Cloud-Anwender, das mit einem Tiling Fenstermanager ausgestattete ArchBang oder Chakra mit Fokus auf KDE[15] aber auch BlackArch[16] für Penetrationstester, EndeavourOS[17] mit grafischem Installer, Parabola GNU/Linux-libre[18] ohne unfreie Bestandteile, SystemRescueCd[19] zur Datenrettung und Artix Linux welches auf systemd verzichtet.[20] Das italienische Condres OS setzt den Fokus auf Benutzerfreundlichkeit und bietet offizielle Paketquellen für 32-Bit Architekturen an. ArcoLinux hingegen versteht sich als Lernsystem, das in den Umgang mit Arch Linux einführt.[21] SteamOS ab Version 3, welches auf dem Steam Deck eingesetzt wird, basiert auf Arch Linux.[22]
+Weblinks[Bearbeiten | Quelltext bearbeiten]
+- Arch Linux Website (offiziell, englisch)
+- Arch Linux Wiki (offiziell, englisch)
+- Arch Linux Website (inoffiziell, deutsch, privat betrieben)
+Einzelnachweise[Bearbeiten | Quelltext bearbeiten]
+- ↑ a b Ferdinand Thommes: Arch Linux wählt neuen Projektleiter. In: Pro-Linux. 25. Februar 2020, abgerufen am 19. Juli 2022.
+- ↑ a b David Jenni: Mein Linux: Arch Linux. In: linux-community.de. 31. Mai 2010, abgerufen am 19. Juli 2022 (deutsch).
+- ↑ a b Mathias Huber: Arch Linux statt Debian unstable. In: Linux-Magazin 09/2010. Abgerufen am 20. Juli 2022 (deutsch).
+- ↑ Peter Kreussel: Arch-Linux-Live-System im Eigenbau. In: LinuxUser 10/2019. Abgerufen am 20. Juli 2022 (deutsch).
+- ↑ Martin Gerhard Loschwitz: 20 Jahre Arch Linux: Profi-System mit Bastlerruf. In: iX Magazin. 11. März 2022, abgerufen am 19. Juli 2022.
+- ↑ Arch Linux. In: Arch-Linux-Wiki. 26. Januar 2017, abgerufen am 15. Februar 2017.
+- ↑ a b Christoph Langner: Die Arch-Linux Paketverwaltung mit Pacman und AUR. In: LinuxUser 09/2015. Abgerufen am 19. Juli 2022 (deutsch).
+- ↑ Christoph Langner: Arch Linux aktualisiert die Paketverwaltung auf Pacman 6.0. In: LinuxUser 08/2021. Abgerufen am 19. Juli 2022 (deutsch).
+- ↑ Tim Schürmann: Digitale Signaturen im Paketmanagement. In: Linux-Magazin 03/2017. Abgerufen am 19. Juli 2022 (deutsch).
+- ↑ a b Thomas Drilling: Linux Server fast from Scratch. In: Admin-Magazin 03/2013. Abgerufen am 19. Juli 2022 (deutsch).
+- ↑ Jürgen Donauer: 32 Linux Distributionen für den Client-Einsatz. In: tecchannel.de. 6. November 2006, abgerufen am 23. Juli 2022.
+- ↑ Christoph Langner: Das Arch User Repository von Arch Linux im Blick. In: LinuxUser 07/2019. Abgerufen am 19. Juli 2022 (deutsch).
+- ↑ Oliver Diedrich: Arch Linux 2012.07.15 ist fertig. In: heise.de. 23. Juli 2012, abgerufen am 20. Juli 2022.
+- ↑ Ferdinand Thommes: Arch Linux gibt 32-Bit-Plattform auf. In: LinuxNews. 8. November 2017, abgerufen am 23. Juli 2022 (deutsch).
+- ↑ Ferdinand Thommes: Arch Linux und seine Derivate. In: LinuxUser 01/2016. Abgerufen am 18. Juli 2022 (deutsch).
+- ↑ David Wolski: Ausprobiert: BlackArch Linux als umfangreiches Penetration-Testing-Toolkit. In: heise.de. Security, 18. Dezember 2020, abgerufen am 18. Juli 2022.
+- ↑ Anna Simon: EndeavourOS im Test. In: LinuxUser 07/2022. Abgerufen am 18. Juli 2022 (deutsch).
+- ↑ Erik Bärwaldt: Parabola Linux ohne proprietäre Elemente. In: LinuxUser 07/2017. Abgerufen am 18. Juli 2022 (deutsch).
+- ↑ Susanne Nolte: Linux kommt zur Rettung: SystemRescueCd heißt jetzt SystemRescue. In: iX Magazin. 23. Oktober 2020, abgerufen am 18. Juli 2022.
+- ↑ Ferdinand Thommes: Klein und kompakt: Artix – Arch Linux ohne Systemd. In: LinuxUser 10/2020. Abgerufen am 18. Juli 2022 (deutsch).
+- ↑ Karsten Günther: Arch-Linux-Derivate für Einsteiger. In: LinuxUser 10/2019. Abgerufen am 20. Juli 2022 (deutsch).
+- ↑ Sven Bauduin: SteamOS 3.0: Valve macht seine Gaming-Distribution frei verfügbar. In: ComputerBase. 15. November 2021, abgerufen am 19. Juli 2022.

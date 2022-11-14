@@ -1,0 +1,17 @@
+Arch Linux
+|Arch Linux|
+Arch Linux mit der Desktopumgebung KDE Plasma 5
+|Erstveröff.||12. März 2002|
+|Entwickler||2002–2007: Judd Vinet;|
+2007–2020: Aaron Griffin;
+seit 2020: Levente Polyak[1]
+|Lizenz(en)||GPL und andere Lizenzen|
+|Akt. Version||Rolling Release (monatlicher Schnappschuss zur Installation[2])|
+|Abstammung||GNU/Linux |
+↳ Arch
+|Architektur(en)||AMD64, Arm (inoffiziell), 32-Bit-x86 (i486, pentium4 und i686, inoffiziell)|
+|www.archlinux.org|
+Arch Linux [ɑːrtʃ ˈlinʊks] ist eine AMD64-optimierte Linux-Distribution mit Rolling Releases, deren Entwicklerteam dem KISS-Prinzip („keep it simple, stupid“) folgt. Zugunsten der Einfachheit wird auf grafische Installations- und Konfigurationshilfen verzichtet. Aufgrund dieses Ansatzes ist Arch Linux als Distribution für fortgeschrittene Benutzer zu sehen. Inspiriert wurden die Ersteller von Crux und BSD.[3]
+Arch Linux wurde Anfang 2001 von Judd Vinet eingeführt. Am 1. Oktober 2007 gab Vinet seinen Rücktritt als Projektleiter bekannt, sein Nachfolger wurde Aaron Griffin.[1] Arch Linux wird von einem ungefähr 25-köpfigen Kernteam und Helfern aus der wachsenden Community, sogenannten „Trusted Users“, weiterentwickelt. Sämtliche distributionsspezifische Entwicklungen werden unter der GPL veröffentlicht.[2]
+Besonderheiten der Distribution[Bearbeiten | Quelltext bearbeiten]
+Arch Linux wurde mit Linux From Scratch komplett neu entwickelt, orientiert sich aber an Crux und anderen Distributionen. Für Arch wurde der Aufbau eines Slackware-Linux respektive eines BSD-Systems mit einer Debian-ähnlichen Paketverwaltung und dem Build-System von Gentoo kombiniert. Ähnlich wie in Gentoo sind die Releases lediglich Snapshots vom momentanen Entwicklungsstand (Rolling Release).

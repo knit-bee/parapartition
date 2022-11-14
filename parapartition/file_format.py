@@ -2,6 +2,9 @@ from lxml import etree
 
 
 def detect_format(file_path: str) -> str:
+    """
+    Detect wheter a file is plain text, html, or xml/TEI.
+    """
     try:
         doc = etree.parse(file_path)
     except etree.XMLSyntaxError:

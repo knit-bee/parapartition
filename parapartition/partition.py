@@ -11,6 +11,16 @@ logger = logging.getLogger(__name__)
 def split_into_paragraphs(
     file_path: str, format: Optional[str] = None
 ) -> Generator[Tuple[str, int, str], None, None]:
+    """
+    Split a xml/html/TEI or plain text file into paragraphs.
+
+    Returns a generator of file name, source line, and text per paragraph.
+    Accepted formats are 'plain', 'tei', 'xml', and 'html'.
+    For TEI-files, the header will be ignored. For Tei, xml, and
+    html files tables and lists are treated as a unit. For html,
+    some tags are ignored (e.g. formatting and navigation).
+    """
+
     format = format if format is not None else detect_format(file_path)
     if format is None:
         return

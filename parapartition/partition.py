@@ -1,5 +1,5 @@
 import logging
-from typing import Generator, Tuple, Union
+from typing import Generator, Optional, Tuple, Union
 
 from lxml import etree, html
 

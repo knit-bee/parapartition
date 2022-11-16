@@ -78,22 +78,15 @@ def _split_tei(file_path: str) -> Generator[Tuple[str, int, str], None, None]:
             }
             if ancestor_tags.intersection(other_tags):
                 continue
-            # check for fw children
+            # check for <fw> children
             unwanted_children = element.findall("{*}fw")
             for child in unwanted_children:
                 element.remove(child)
-            text = etree.tostring(element, method="text", encoding="unicode")
-            text = re.sub(r"\n+|\s+", " ", text).strip()
-            if text:
-                yield (file_path, element.sourceline, text)
-            else:
-                continue
-        if el_tag in other_tags:
-            text = _gather_complex_element_text(element)
-            if text:
-                yield (file_path, element.sourceline, text)
-            else:
-                continue
+        text = _gather_complex_element_text(element)
+        if text:
+            yield (file_path, element.sourceline, text)
+        else:
+            continue
 
 
 def _split_plain_text(file_path: str) -> Generator[Tuple[str, int, str], None, None]:

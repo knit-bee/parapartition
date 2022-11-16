@@ -150,5 +150,5 @@ def _strip_formatting_tags(html_tree: etree._Element) -> None:
 
 def _gather_complex_element_text(element: etree._Element) -> str:
     text = etree.tostring(element, method="text", encoding="unicode")
-    text = re.sub(r"\s\s+|\n", " ", text).strip()
+    text = re.sub(r"\s+|\n", " ", text).strip()
     return text

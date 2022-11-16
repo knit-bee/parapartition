@@ -78,8 +78,12 @@ def _split_tei(file_path: str) -> Generator[Tuple[str, int, str], None, None]:
             }
             if ancestor_tags.intersection(other_tags):
                 continue
+            # check for fw children
+            unwanted_children = element.findall("{*}fw")
+            for child in unwanted_children:
+                element.remove(child)
             text = etree.tostring(element, method="text", encoding="unicode")
-            text = re.sub("\n", " ", text).strip()
+            text = re.sub(r"\n+|\s+", " ", text).strip()
             if text:
                 yield (file_path, element.sourceline, text)
             else:
@@ -150,5 +154,5 @@ def _strip_formatting_tags(html_tree: etree._Element) -> None:
 
 def _gather_complex_element_text(element: etree._Element) -> str:
     text = etree.tostring(element, method="text", encoding="unicode")
-    text = re.sub(r"\s+|\n", " ", text).strip()
+    text = re.sub(r"\s+|\n+", " ", text).strip()
     return text

@@ -273,6 +273,28 @@ class ParapartitionTester(unittest.TestCase):
         )
         self.assertEqual(result[0], expected)
 
+    def test_fw_removed_from_p(self):
+        file = os.path.join(self.testdata, "tei_with_complex_elements.xml")
+        result = [para[2] for para in split_into_paragraphs(file, "tei")][1]
+        expected = (
+            "BEy ſolchem Alter ſage ich/ laſſen ſie denen Luͤſten und Begierden"
+            " den Zuͤgel allzuſehr/ als welche doch ihre Toden-Traͤger ſeyn/ und ſie in das "
+            "aͤuſerſte Verderben ſtuͤrtzen vor der Zeit. Solcher Jugend Laſter nun benennet der "
+            "ſeel. und hocherleuchtete geiſtreiche D. Heinrich Muͤller Evangeliſchen Hertzens-Spie-"
+            " gel. Domin. XVI. p. 566. fuͤr- nemlich ſechs. Die Juͤngling/ ſagt er/ haben wohl zu "
+            "mercken/ wenn ſie ihr Le- ben friſten wollen/ daß ihre Toden-Traͤ- ger fein ſtille ſtehen."
+            " Denn ſechs To- den-Traͤger finden ſich/ die manchen Juͤngling zum Grabe tragen. Der erſte "
+            "heiſet Trunckenheit. Wie mancher ſaͤufft ſich zu tode? Die Saat ver- dirbet ja/ wenn "
+            "ſie uͤberſchwemmet iſt. Ein Lichtlein gehet aus/ wenn du viel Feuchtigkeit zuſchuͤtteſt. "
+            "Groſſe Fluthen koͤnnen Schiffe ver- ſencken und ſtarcke Truͤncke das Le- ben verderben/ wiltu"
+            " lang leben Juͤngling/ ſo hoͤre auf zu ſauffen. Dieſem geben Beyfall mehr geiſtlich und "
+            "weltliche Scribenten. Sie ma- chet unſinnig. Daher Pythagoras die Trunckenheit "
+            "inſaniæ meditationem, eine mit Fleiß geſuchte Raſerey ge- nennet. Stobeus meinet/ "
+            "daß/ gleich wie die alten Leute/ alſo auch die trunckene zweymahl Kinder wuͤr- den."
+            " Chryſoſtomus heiſet ſie eine Ver- kehrung der Vernunfft/ nach dem Vers:"
+        )
+        self.assertEqual(result, expected)
+
     def files(self, format):
         testfiles = {
             "xml": [

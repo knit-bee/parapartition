@@ -1,4 +1,5 @@
 import logging
+import re
 from typing import Generator, Optional, Tuple, Union
 
 from lxml import etree, html
@@ -63,7 +64,7 @@ def _split_html(file_path: str) -> Generator[Tuple[str, int, str], None, None]:
 
 
 def _split_tei(file_path: str) -> Generator[Tuple[str, int, str], None, None]:
-    p_like_tags = {"p", "fw", "head", "ab"}
+    p_like_tags = {"p", "head", "ab"}
     other_tags = {"table", "list"}
     tags_to_iter = {f"{{*}}{tag}" for tag in p_like_tags.union(other_tags)}
     document = etree.parse(file_path)
@@ -77,9 +78,8 @@ def _split_tei(file_path: str) -> Generator[Tuple[str, int, str], None, None]:
             }
             if ancestor_tags.intersection(other_tags):
                 continue
-            text = element.text if element.text else ""
-            if element.tail is not None and element.tail.strip():
-                text += f" {element.tail.strip()}"
+            text = etree.tostring(element, method="text", encoding="unicode")
+            text = re.sub("\n", "", text).strip()
             if text:
                 yield (file_path, element.sourceline, text)
             else:

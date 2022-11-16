@@ -37,7 +37,7 @@
   <text>
     <body>
       <div type="entry">
-        <fw rend="h1" type="header">Arch Linux</fw>
+        <ab rend="h1" type="header">Arch Linux</ab>
         <p>Arch Linux [ɑːrtʃ ˈlinʊks] ist eine AMD64-optimierte Linux-Distribution mit Rolling Releases,</p>
       <p/>
         <p>more text</p>

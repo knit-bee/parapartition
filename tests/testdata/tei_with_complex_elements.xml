@@ -1,0 +1,118 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="main">Some text</title>
+      </titleStmt>
+      <publicationStmt>
+        <p>text to be ignored</p>
+      </publicationStmt>
+      <sourceDesc>
+        <bibl></bibl>
+        <bibl type="sigle"></bibl>
+        <biblFull>
+          <titleStmt>
+            <title type="main">Some text</title>
+          </titleStmt>
+          <publicationStmt>
+            <publisher></publisher>
+          </publicationStmt>
+        </biblFull>
+      </sourceDesc>
+    </fileDesc>
+    <encodingDesc>
+      <tagsDecl>
+        <rendition scheme="css" xml:id="aq">font-family:sans-serif</rendition>
+        <rendition scheme="css" xml:id="b">font-weight:bold</rendition>
+        <rendition scheme="css" xml:id="blue">color:blue</rendition>
+        <rendition scheme="css" xml:id="c">display:block; text-align:center</rendition>
+        <rendition scheme="css" xml:id="et">display:block; margin-left:2em; text-indent:0</rendition>
+        <rendition scheme="css" xml:id="et2">display:block; margin-left:4em; text-indent:0</rendition>
+        <rendition scheme="css" xml:id="et3">display:block; margin-left:6em; text-indent:0</rendition>
+        <rendition scheme="css" xml:id="f">border:1px dotted silver</rendition>
+        <rendition scheme="css" xml:id="fr">border:1px dotted silver</rendition>
+        <rendition scheme="css" xml:id="g">letter-spacing:0.125em</rendition>
+        <rendition scheme="css" xml:id="i">font-style:italic</rendition>
+        <rendition scheme="css" xml:id="in">font-size:150%</rendition>
+        <rendition scheme="css" xml:id="k">font-variant:small-caps</rendition>
+        <rendition scheme="css" xml:id="larger">font-size:larger</rendition>
+        <rendition scheme="css" xml:id="red">color:red</rendition>
+        <rendition scheme="css" xml:id="right">display:block; text-align:right</rendition>
+        <rendition scheme="css" xml:id="s">text-decoration:line-through</rendition>
+        <rendition scheme="css" xml:id="smaller">font-size:smaller</rendition>
+        <rendition scheme="css" xml:id="sub">vertical-align:sub; font-size:.7em</rendition>
+        <rendition scheme="css" xml:id="sup">vertical-align:super; font-size:.7em</rendition>
+        <rendition scheme="css" xml:id="u">text-decoration:underline</rendition>
+        <rendition scheme="css" xml:id="uu">border-bottom:double 3px #000</rendition>
+      </tagsDecl>
+    </encodingDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <div type="entry">
+        <list>
+          <item>Das 1. <hi rendition="#fr">Cap. Von den Kranckheiten<lb/>
+insgemein</hi> <space dim="horizontal"/> 77</item>
+          <lb/>
+          <item>2. <hi rendition="#fr">Cap. Von ungleichen Mei-<lb/>
+nungen der</hi> <hi rendition="#aq">Medicorum</hi> <hi rendition="#fr">in<lb/>
+Kranckheiten</hi> <space dim="horizontal"/> 79</item>
+          <lb/>
+          <item>3. C<hi rendition="#fr">ap.</hi> V<hi rendition="#fr">on Nutzen der Kranck-<lb/>
+heiten</hi> <space dim="horizontal"/> 79</item>
+          <lb/>
+          <item>4. C<hi rendition="#fr">ap. Von Frantzoſen</hi> <space dim="horizontal"/> 82</item>
+          <lb/>
+          <item>5. <hi rendition="#fr">Cap. Von der</hi> <hi rendition="#aq">Gonorrhœe</hi> <space dim="horizontal"/> 89</item>
+          <lb/>
+          <item>6. <hi rendition="#fr">Cap.</hi> V<hi rendition="#fr">on der allgemeinen<lb/>
+Ungeſundheit oder</hi> <hi rendition="#aq">Cachexia</hi><lb/>
+<space dim="horizontal"/> 90</item>
+          <lb/>
+          <item>7. C<hi rendition="#fr">ap. Was von der Fettigkeit<lb/>
+des Menſchen zu halten</hi> <space dim="horizontal"/> 92</item>
+        </list>
+        <p><hi rendition="#in">B</hi>Ey ſolchem Alter ſage ich/ laſſen<lb/>
+ſie denen Luͤſten und Begierden<lb/>
+den Zuͤgel allzuſehr/ als welche<lb/>
+doch ihre Toden-Traͤger ſeyn/ und ſie<lb/>
+in das aͤuſerſte Verderben ſtuͤrtzen vor<lb/>
+der Zeit. Solcher Jugend Laſter nun<lb/>
+benennet der ſeel. und hocherleuchtete<lb/>
+geiſtreiche <hi rendition="#aq">D.</hi> Heinrich Muͤller <note place="foot" n="(g)">Evangeliſchen Hertzens-Spie-<lb/>
+gel. <hi rendition="#aq">Domin. XVI. p.</hi> 566.</note> fuͤr-<lb/>
+<fw type="catch" place="bottom">nemlich</fw><lb/>
+<pb n="7" facs="#f0033"/>
+<fw type="header" place="top"><hi rendition="#b">und derer Curen</hi></fw><lb/>
+nemlich ſechs. Die Juͤngling/ ſagt er/<lb/>
+haben wohl zu mercken/ wenn ſie ihr Le-<lb/>
+ben friſten wollen/ daß ihre Toden-Traͤ-<lb/>
+ger fein ſtille ſtehen. Denn ſechs To-<lb/>
+den-Traͤger finden ſich/ die manchen<lb/>
+Juͤngling zum Grabe tragen. Der erſte<lb/>
+heiſet Trunckenheit. <hi rendition="#fr">Wie mancher<lb/>
+ſaͤufft ſich zu tode? Die Saat ver-<lb/>
+dirbet ja/ wenn ſie uͤberſchwemmet<lb/>
+iſt. Ein Lichtlein gehet aus/ wenn<lb/>
+du viel Feuchtigkeit zuſchuͤtteſt.<lb/>
+Groſſe Fluthen koͤnnen Schiffe ver-<lb/>
+ſencken und ſtarcke Truͤncke das Le-<lb/>
+ben verderben/ wiltu lang leben<lb/>
+Juͤngling/ ſo hoͤre auf zu ſauffen.<lb/>
+Dieſem geben Beyfall mehr geiſtlich<lb/>
+und weltliche Scribenten. Sie ma-<lb/>
+chet unſinnig. Daher</hi> <hi rendition="#aq">Pythagoras</hi> <hi rendition="#fr">die</hi><lb/>
+Trunckenheit <hi rendition="#aq">inſaniæ meditationem,</hi><lb/>
+<hi rendition="#fr">eine mit Fleiß geſuchte Raſerey ge-<lb/>
+nennet.</hi> <hi rendition="#aq">Stobeus</hi> <hi rendition="#fr">meinet/ daß/ gleich<lb/>
+wie die alten Leute/ alſo auch die<lb/>
+trunckene zweymahl Kinder wuͤr-<lb/>
+den.</hi> <hi rendition="#aq">Chryſoſtomus</hi> <hi rendition="#fr">heiſet ſie eine Ver-<lb/>
+kehrung der Vernunfft/</hi> nach dem<lb/>
+Vers:</p>
+<list>
+  <item>         </item></list>
+      </div>
+    </body>
+  </text>
+</TEI>

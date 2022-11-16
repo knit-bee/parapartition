@@ -78,8 +78,8 @@ class ParapartitionTester(unittest.TestCase):
             " dieses Ansatzes ist Arch Linux als Distribution für fortgeschrittene Benutzer zu sehen. "
             "Inspiriert wurden die Ersteller von Crux und BSD.[3]",
             # eigth item
-            "Einfach halten, dem KISS-Prinzip folgen. Einfachheit wird hierbei als "
-            "ohne unnötige Ergänzungen oder Veränderungen definiert.[6] "
+            "Einfach halten, dem KISS-Prinzip folgen. Einfachheit wird hierbei als"
+            "ohne unnötige Ergänzungen oder Veränderungendefiniert.[6] "
             "Keine GUI-Werkzeuge zur Konfiguration benutzen, die die eigentlichen Vorgänge"
             " vor dem Benutzer verstecken.",
         ]
@@ -250,6 +250,28 @@ class ParapartitionTester(unittest.TestCase):
         file = os.path.join(self.testdata, "plain_with_empty_lines.txt")
         result = [para[2] for para in split_into_paragraphs(file, "plain")]
         self.assertEqual(len(result), 4)
+
+    def test_text_concatenated_correctly_from_complex_paragraphs(self):
+        file = os.path.join(self.testdata, "tei_with_complex_elements.xml")
+        result = [para[2] for para in split_into_paragraphs(file, "tei")]
+        self.assertTrue("laſſen ſie" in result[1])
+
+    def test_empty_list_skipped(self):
+        file = os.path.join(self.testdata, "tei_with_complex_elements.xml")
+        result = [para[2] for para in split_into_paragraphs(file, "tei")]
+        self.assertEqual(len(result), 2)
+
+    def test_text_concatenated_correctly_from_list_with_formatting(self):
+        file = os.path.join(self.testdata, "tei_with_complex_elements.xml")
+        result = [para[2] for para in split_into_paragraphs(file, "tei")]
+        expected = (
+            "Das 1. Cap. Von den Kranckheiten insgemein 77 2. Cap. Von "
+            "ungleichen Mei- nungen der Medicorum in Kranckheiten 79 3. Cap. Von Nutzen"
+            " der Kranck- heiten 79 4. Cap. Von Frantzoſen 82 5. Cap. Von der Gonorrhœe 89 "
+            "6. Cap. Von der allgemeinen Ungeſundheit oder Cachexia 90 7. Cap. Was von der"
+            " Fettigkeit des Menſchen zu halten 92"
+        )
+        self.assertEqual(result[0], expected)
 
     def files(self, format):
         testfiles = {
